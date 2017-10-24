@@ -1,0 +1,20 @@
+{
+  "name": "weather-server",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "nodemon --delay 2000ms ./server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "config": "^1.27.0",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "node-cache": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}

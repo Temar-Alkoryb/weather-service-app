@@ -1,0 +1,16 @@
+{
+  "ServerPort": 8080,
+  "AllowedOrigins": [
+    "http://127.0.0.1"
+  ],
+  "OpenWeather": {
+    "url": {
+      "forecast": "http://api.openweathermap.org/data/2.5/forecast/daily?q=",
+      "weather": "http://api.openweathermap.org/data/2.5/weather?q="
+    },
+    "mode": "&mode=json",
+    "units": "metric",
+    "cnt": 3,
+    "apikey": "94b7c9a9908d65670675b7edd72079fc"
+  }
+}

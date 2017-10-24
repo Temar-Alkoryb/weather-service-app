@@ -1,0 +1,90 @@
+<!doctype html>
+<html ng-app="weatherApp">
+  <head>
+    <meta charset="utf-8">
+    <base href="app">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>weather-app</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <script src="/node_modules/angular/angular.min.js"></script>
+    <script src="/node_modules/angular-cookies/angular-cookies.min.js"></script>
+    <script src="/controllers/weatherAppController.js"></script>
+    <script src="/services/weatherAppService.js"></script>
+    <script src="/main.js"></script>
+  </head>
+  <body ng-controller="weatherAppController">
+    <div class="navbar navbar-default">
+      <div class="container">
+        <div class="row">
+          <form class="form"
+            name="weatherForm"
+            ng-submit="getForecast(selectedCity.name)"
+            role="form">
+            <div class="form-container">
+              <div class="form-group col-md-4" ng-init="registerWeatherForm(weatherForm)">
+                <label for="city">Enter your city:</label>
+                <input type="text"
+                  ng-model="selectedCity.name"
+                  name="city"
+                  id="city"
+                  class="form-control"
+                  required="required">
+              </div>
+              <div class="form-group col-md-1">
+                <label for="count">Days:</label>
+                <select id="count"
+                  name="count"
+                  class="form-control"
+                  ng-model="count"
+                  ng-options="cnt for cnt in cnt">
+                </select>
+              </div>
+              <div class="form-group col-md-1">
+                <label for="submit"></label>
+                <input type="submit"
+                  id="submit"
+                  class="btn btn-success form-control"
+                  value="View" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="clearfix"></div>
+        <div class="col-md-12" ng-if="recentCities.length">
+          <span>Your recent cities:</span>
+          <ul class="list-inline cities-list">
+            <li ng-repeat="city in recentCities track by $index">
+              <a href="" ng-bind="city" ng-click="getRecentForecast(city)"></a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-12">
+          <div ng-if="currentCity">
+            <span>Forcast for:</span>
+            <span ng-bind="currentCity" class="current-city"></span>
+          </div>
+          <ul ng-if="forecast" style="padding: 0;">
+            <li ng-repeat="weather in forecast track by $index" class="weather-item col-md-2 col-sm-3 col-xs-12">
+              <div>{{weather.date | date:'d LLLL yyyy'}}</div>
+              <div class="">{{weather.summary}}</div>
+              <div class="">
+                Temp:
+                <span ng-if="weather.temp.day > 0">+</span>{{weather.temp.day | number:0}}C /
+                <span ng-if="weather.temp.night > 0">+</span>{{weather.temp.night | number:0}}C
+              </div>
+              <div class="">Wind: {{weather.wind.speed}}</div>
+              <div>{{weather.wind.direction}}</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- row -->
+    </div>
+    <!-- container -->
+  </body>
+</html>
